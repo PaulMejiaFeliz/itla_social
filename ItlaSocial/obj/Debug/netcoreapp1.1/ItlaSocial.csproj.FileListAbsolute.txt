@@ -1,0 +1,10 @@
+c:\users\paul\documents\visual studio 2017\Projects\ItlaSocial\ItlaSocial\bin\Debug\netcoreapp1.1\ItlaSocial.deps.json
+c:\users\paul\documents\visual studio 2017\Projects\ItlaSocial\ItlaSocial\bin\Debug\netcoreapp1.1\ItlaSocial.runtimeconfig.json
+c:\users\paul\documents\visual studio 2017\Projects\ItlaSocial\ItlaSocial\bin\Debug\netcoreapp1.1\ItlaSocial.runtimeconfig.dev.json
+c:\users\paul\documents\visual studio 2017\Projects\ItlaSocial\ItlaSocial\bin\Debug\netcoreapp1.1\ItlaSocial.dll
+c:\users\paul\documents\visual studio 2017\Projects\ItlaSocial\ItlaSocial\bin\Debug\netcoreapp1.1\ItlaSocial.pdb
+c:\users\paul\documents\visual studio 2017\Projects\ItlaSocial\ItlaSocial\obj\Debug\netcoreapp1.1\ItlaSocial.csprojResolveAssemblyReference.cache
+c:\users\paul\documents\visual studio 2017\Projects\ItlaSocial\ItlaSocial\obj\Debug\netcoreapp1.1\ItlaSocial.AssemblyInfo.cs
+c:\users\paul\documents\visual studio 2017\Projects\ItlaSocial\ItlaSocial\obj\Debug\netcoreapp1.1\ItlaSocial.dll
+c:\users\paul\documents\visual studio 2017\Projects\ItlaSocial\ItlaSocial\obj\Debug\netcoreapp1.1\ItlaSocial.pdb
+C:\Users\PAUL\Documents\Visual Studio 2017\Projects\ItlaSocial\ItlaSocial\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs

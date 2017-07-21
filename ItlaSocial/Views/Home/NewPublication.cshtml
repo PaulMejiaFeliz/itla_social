@@ -1,0 +1,46 @@
+@model ItlaSocial.Models.Publication
+
+@{
+    ViewData["Title"] = "New Publication";
+}
+
+<h2>New Publication</h2>
+
+<form asp-action="NewPublication" enctype="multipart/form-data">
+    <div class="form-horizontal">
+        <h4>Publication</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 control-label">Upload photos</label>
+                <input type="file" name="files" id="gallery-photo-add" multiple class="form-control" accept="image/*" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+<div class="gallery"></div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript" src="~/js/PhotoPreview.js"></script>
+}

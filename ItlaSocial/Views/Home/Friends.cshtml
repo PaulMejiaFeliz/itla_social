@@ -1,0 +1,169 @@
+@model ICollection<ItlaSocial.Models.ApplicationViewModels.ApplicationUserInvitationViewModel>
+
+@{
+    ViewData["Title"] = "Friends";
+}
+
+@if (!String.IsNullOrWhiteSpace(ViewBag.errorMessage))
+{
+    <h3 class="text-danger">@ViewBag.errorMassage</h3>
+}
+
+@if (Model != null)
+{
+    <h2>Results for @ViewBag.name</h2>
+
+    @foreach (var user in Model)
+    {
+        <div class="panel panel-primary col-md-8 col-md-offset-2">
+            <div class="panel-body">
+                <div class="col-md-7">
+                    <img src="@user.ProfilePhotos.MediaUrl" alt="" class="headshot" />
+                    <span>@user.Name @user.LastName</span>
+                </div>
+                <div class="col-md-5 text-right">
+                    @if (user.Id != ViewBag.userId)
+                    {
+                        @if (user.Status == FriendshipStatus.None)
+                        {
+                            <form method="post" asp-controller="home" asp-action="ChangeFriendshipStatus">
+                                <input type="hidden" name="friendId" value="@user.Id" />
+                                <div class="btn-group">
+                                    <button type="submit" name="status" value="@FriendshipStatus.Pending" class="btn btn-primary">Send invitation</button>
+                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><button type="submit" name="status" value="@FriendshipStatus.Blocked">Block</button></li>
+                                    </ul>
+                                </div>
+                            </form>
+
+                        }
+                        else if (user.Status == FriendshipStatus.Pending)
+                        {
+                            if (user.Sent)
+                            {
+                                <form method="post" asp-controller="home" asp-action="ChangeFriendshipStatus">
+                                    <input type="hidden" name="friendId" value="@user.Id" />
+                                    <div class="btn-group">
+                                        <button type="submit" name="status" value="@FriendshipStatus.Accepted" class="btn btn-primary">Accept invitation</button>
+                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><button type="submit" name="status" value="@FriendshipStatus.Declined">Decline invitation</button></li>
+                                            <li><button type="submit" name="status" value="@FriendshipStatus.Blocked">Block</button></li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <form method="post" asp-controller="home" asp-action="ChangeFriendshipStatus">
+                                    <input type="hidden" name="friendId" value="@user.Id" />
+                                    <div class="btn-group">
+                                        <button type="submit" name="status" value="@FriendshipStatus.Cancelled" class="btn btn-danger">Cancel invitation</button>
+                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><button type="submit" name="status" value="@FriendshipStatus.Blocked">Block</button></li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            }
+                        }
+                        else if (user.Status == FriendshipStatus.Accepted)
+                        {
+                            <form method="post" asp-controller="home" asp-action="ChangeFriendshipStatus">
+                                <input type="hidden" name="friendId" value="@user.Id" />
+                                <div class="btn-group">
+                                    <button class="btn btn-primary">You are Friends</button>
+                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><button type="submit" name="status" value="@FriendshipStatus.Blocked">Block</button></li>
+                                        <li><button type="submit" name="status" value="@FriendshipStatus.None">Unfriend</button></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        }
+                        else if (user.Status == FriendshipStatus.Declined)
+                        {
+                            if (user.Sent)
+                            {
+                                <form method="post" asp-controller="home" asp-action="ChangeFriendshipStatus">
+                                    <input type="hidden" name="friendId" value="@user.Id" />
+                                    <div class="btn-group">
+                                        <button type="submit" name="status" value="@FriendshipStatus.Pending" class="btn btn-primary">Send invitation</button>
+                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><button type="submit" name="status" value="@FriendshipStatus.Blocked">Block</button></li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <form method="post" asp-controller="home" asp-action="ChangeFriendshipStatus">
+                                    <input type="hidden" name="friendId" value="@user.Id" />
+                                    <div class="btn-group">
+                                        <button class="btn btn-danger">Invitation declined</button>
+                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><button type="submit" name="status" value="@FriendshipStatus.Blocked">Block</button></li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            }
+                        }
+                        else if (user.Status == FriendshipStatus.Cancelled)
+                        {
+                            <form method="post" asp-controller="home" asp-action="ChangeFriendshipStatus">
+                                <input type="hidden" name="friendId" value="@user.Id" />
+                                <div class="btn-group">
+                                    <button type="submit" name="status" value="@FriendshipStatus.Pending" class="btn btn-primary">Send invitation</button>
+                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><button type="submit" name="status" value="@FriendshipStatus.Blocked">Block</button></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        }
+                        else if (user.Status == FriendshipStatus.Blocked)
+                        {
+                            <form method="post" asp-controller="home" asp-action="ChangeFriendshipStatus">
+                                <input type="hidden" name="friendId" value="@user.Id" />
+                                <div class="btn-group">
+                                    <button type="submit" name="status" value="@FriendshipStatus.None" class="btn btn-danger">Unblock</button>
+                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><button type="submit" name="status" value="@FriendshipStatus.Pending">Unblock and send invitation</button></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+else if (!String.IsNullOrWhiteSpace(ViewBag.name))
+{
+    <h2>Results were not found for @ViewBag.name</h2>
+}
+else
+{
+    <h2>Find friend with whom share your stories</h2>
+}

@@ -1,0 +1,37 @@
+﻿<h1>
+    Publications
+</h1>
+
+<wait-cursor display-when="isBusy"></wait-cursor>
+<div ng-repeat="p in data" class="col-md-10">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div>
+                    <img ng-src="{{p.applicationUser.profilePhotos[0].mediaUrl}}" alt="" class="headshot" />
+                    <span>{{p.applicationUser.name}} {{p.applicationUser.lastName}}</span>
+                </div>
+                <div>
+                    <h5 class="text-muted">Published date {{p.date | date: 'dd-MM-yyyy hh:mm:ss'}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>{{p.title}}</h3>
+                <!-- ----------------------------------------------------------------------------------- -->
+
+                <div class="item" ng-repeat="m in p.publicationMedia">
+                    <img ng-src="{{m.mediaUrl}}" alt="" class="img-responsive img-thumbnail">
+                </div>
+
+                <!-- ----------------------------------------------------------------------------------- -->
+                <p>{{p.description}}</p>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+</div>
